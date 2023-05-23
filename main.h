@@ -26,6 +26,8 @@ typedef struct list_path
 
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
 void print(char *s);
 int lenstr(char *s);
 list_path *add_nodeint_end(list_path **head, const char *n);

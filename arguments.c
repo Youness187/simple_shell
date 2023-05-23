@@ -13,7 +13,7 @@ char **arguments(char *buffer)
 	int len_buffer, i, len = lenstr(buffer);
 
 	buffer_copy = malloc(sizeof(char) * len);
-	strcpy(buffer_copy, buffer);
+	_strcpy(buffer_copy, buffer);
 
 	token = strtok(buffer_copy, " \t\n");
 	for (len_buffer = 0; token; len_buffer++)
@@ -31,8 +31,8 @@ char **arguments(char *buffer)
 	for (i = 0; token; i++)
 	{
 		arg[i] = malloc(sizeof(char) * lenstr(token) + 1);
-		strcpy(arg[i], token);
-		strcat(arg[i], "\0");
+		_strcpy(arg[i], token);
+		_strcat(arg[i], "\0");
 		token = strtok(NULL, " \t\n");
 	}
 	arg[i] = NULL;

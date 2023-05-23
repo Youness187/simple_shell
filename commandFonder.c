@@ -27,10 +27,10 @@ char *commandFonder(char *command, list_path *path)
 		{
 			return (NULL);
 		}
-		strcpy(full_command, token);
-		strcat(full_command, "/");
-		strcat(full_command, command);
-		strcat(full_command, "\0");
+		_strcpy(full_command, token);
+		_strcat(full_command, "/");
+		_strcat(full_command, command);
+		_strcat(full_command, "\0");
 
 		if (stat(full_command, &st) == 0)
 		{
