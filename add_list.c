@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * add_node_end - adding nodes to the end of linked list
+ * @head: the head of the linked list
+ * @n: path
+ *
+ * Return: the NEW Node
+ */
 
 list_path *add_node_end(list_path **head, char *n)
 {
@@ -27,21 +34,27 @@ list_path *add_node_end(list_path **head, char *n)
 	return (new);
 }
 
+/**
+ * adding_path - adding nodes to the end of linked list
+ * @head: the head of the linked list
+ *
+ * Return: length of linked list
+ */
 
 int adding_path(list_path **head)
 {
-    char *key = NULL, *path = _getpath();
-    int i = 0;
+	char *key = NULL, *path = _getpath();
+	int i = 0;
 
-    if (path != NULL)
-    {
-        key = strtok(path, ":");
-    }
-    while (key)
-    {
-        add_node_end(head, key);
-        i++;
-        key = strtok(NULL, ":");
-    }
-    return (i);
+	if (path != NULL)
+	{
+		key = strtok(path, ":");
+	}
+	while (key)
+	{
+		add_node_end(head, key);
+		i++;
+		key = strtok(NULL, ":");
+	}
+	return (i);
 }

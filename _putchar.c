@@ -9,15 +9,19 @@
  */
 int _putchar(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
+/**
+ * print - printing string
+ * @s: String
+ */
 void print(char *s)
 {
-    int i;
+	int i;
 
-    for (i = 0; s[i]; i++)
-    {
-        _putchar(s[i]);
-    }    
+	for (i = 0; s[i]; i++)
+	{
+		_putchar(s[i]);
+	}
 }

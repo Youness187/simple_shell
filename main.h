@@ -16,7 +16,7 @@ extern char **environ;
 /**
  * struct list_path - Linked list containing PATH directories
  * @dir: directory in path
- * @p: pointer to next node
+ * @next: pointer to next node
  */
 typedef struct list_path
 {
