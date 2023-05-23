@@ -57,7 +57,8 @@ void execute(char *command, list_path *list_head, char *ag)
 		ffree(arg);
 		print(ag);
 		print(": ");
+		print("1");
 		print(command);
-		print(": command not found\n");
+		print(": not found\n");
 	}
 }
