@@ -8,7 +8,7 @@ char *commandFonder(char *command, list_path *path)
     if (stat(command, &st) == 0 || command == NULL){
         return (command);
     }
-    if (strcmp(command, "exit") == 0)
+    if (_strcmp(command, "exit") == 0)
         return ("exit");
     while (h != NULL)
     {

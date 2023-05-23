@@ -8,7 +8,7 @@ char *_getpath()
     for (i = 0; environ[i] != NULL; i++)
     {
         key = strtok(environ[i], "=");
-        if (strcmp("PATH", key) == 0)
+        if (_strcmp("PATH", key) == 0)
             return (strtok(NULL, "\n"));
     }
     return (NULL);

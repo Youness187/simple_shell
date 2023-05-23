@@ -15,7 +15,7 @@ void execute(char *command, list_path *list_head, char *ag)
 {
     char **arg, *com;
 
-    if (strcmp(command, "\n") == 0)
+    if (_strcmp(command, "\n") == 0)
         return;
 
     arg = arguments(command);
@@ -23,12 +23,12 @@ void execute(char *command, list_path *list_head, char *ag)
     if (com != NULL)
     {
         pid_t pid;
-        if (strcmp(com, "exit") == 0)
+        if (_strcmp(com, "exit") == 0)
             exit(arg[1] != NULL ? atoi(arg[1]) : 0);
 
         pid = fork();
         if (pid == 0)
-        {
+        {   
             if (execve(com, arg, environ) == -1)
             {
                 perror(command);
