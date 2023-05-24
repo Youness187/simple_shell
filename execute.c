@@ -15,10 +15,9 @@ void ffree(char **pp)
 	free(a);
 }
 /**
- * execute - Executing the command if it's available.
- * @command: the command
- * @list_head: linked list of system paths
- * @ag: file name
+ * forkk - Executing the command if it's available.
+ * @com: the command
+ * @arg: arguments
  */
 
 void forkk(char *com, char **arg)
@@ -47,6 +46,13 @@ void forkk(char *com, char **arg)
 		ffree(arg);
 	}
 }
+/**
+ * execute - Executing the command if it's available.
+ * @command: the command
+ * @list_head: linked list of system paths
+ * @ag: file name
+ */
+
 void execute(char *command, list_path *list_head, char *ag)
 {
 	char **arg, *com;
