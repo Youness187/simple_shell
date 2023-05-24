@@ -19,7 +19,7 @@ void sh(list_path *list_head, char *a)
 		{
 			if (isatty(STDIN_FILENO))
 				print("\n");
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		execute(buffer, list_head, a);
 	}

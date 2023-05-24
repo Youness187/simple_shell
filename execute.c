@@ -31,7 +31,6 @@ void forkk(char *com, char **arg)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
 		if (execve(com, arg, environ) < 0)
 		{
 			perror(arg[0]);
