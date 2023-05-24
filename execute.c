@@ -20,10 +20,36 @@ void ffree(char **pp)
  * @list_head: linked list of system paths
  * @ag: file name
  */
+
+void forkk(char *com, char **arg)
+{
+	int status;
+	pid_t pid;
+
+	if (_strcmp(com, "exit") == 0)
+		exit(0);
+
+	pid = fork();
+	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		if (execve(com, arg, environ) < 0)
+		{
+			perror(arg[0]);
+			return;
+		}
+	}
+	else
+	{
+		waitpid(pid, &status, WUNTRACED);
+		if (com != arg[0])
+			free(com);
+		ffree(arg);
+	}
+}
 void execute(char *command, list_path *list_head, char *ag)
 {
 	char **arg, *com;
-	int status;
 
 	if (_strcmp(command, "\n") == 0)
 		return;
@@ -32,28 +58,12 @@ void execute(char *command, list_path *list_head, char *ag)
 	com = commandFonder(arg[0], list_head);
 	if (com != NULL)
 	{
-		pid_t pid;
-
-		if (_strcmp(com, "exit") == 0)
-			exit(0);
-
-		pid = fork();
-		if (pid == 0)
-		{
-			signal(SIGINT, SIG_DFL);
-			if (execve(com, arg, environ) < 0)
-			{
-				perror(command);
-				return;
-			}
-		}
-		else
-		{
-			waitpid(pid, &status, WUNTRACED);
-			if (com != arg[0])
-				free(com);
-			ffree(arg);
-		}
+		forkk(com, arg);
+	}
+	else if (arg[0] == NULL)
+	{
+		ffree(arg);
+		return;
 	}
 	else
 	{
