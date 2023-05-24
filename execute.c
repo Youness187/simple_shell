@@ -25,7 +25,7 @@ void execute(char *command, list_path *list_head, char *ag)
 	char **arg, *com;
 	int status;
 
-	if (_strcmp(command, "\n") == 0 || _strcmp(command, " \n") == 0)
+	if (_strcmp(command, "\n") == 0)
 		return;
 
 	arg = arguments(command);
@@ -50,7 +50,8 @@ void execute(char *command, list_path *list_head, char *ag)
 		else
 		{
 			waitpid(pid, &status, WUNTRACED);
-			free(com);
+			if (com != arg[0])
+				free(com);
 			ffree(arg);
 		}
 	}
