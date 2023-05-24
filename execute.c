@@ -55,10 +55,6 @@ void execute(char *command, list_path *list_head, char *ag)
 	else
 	{
 		ffree(arg);
-		print(ag);
-		print(": ");
-		print("1");
-		print(command);
-		print(": not found\n");
+		perror(ag);
 	}
 }
