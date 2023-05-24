@@ -42,7 +42,7 @@ void execute(char *command, list_path *list_head, char *ag)
 			if (execve(com, arg, environ) == -1)
 			{
 				perror(command);
-				exit(126);
+				return;
 			}
 		}
 		else
