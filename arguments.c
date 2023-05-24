@@ -9,8 +9,7 @@ char **arguments(char *buffer)
 {
 	char **arg;
 	char *token;
-	int len_buffer = 0, i;
-	int len = lenstr(buffer);
+	int i;
 
 	arg = malloc(sizeof(char *) * 200);
 
