@@ -55,25 +55,23 @@ void forkk(char *com, char **arg)
 
 void execute(char *command, list_path *list_head, char *ag)
 {
-	char **arg, *com;
+	char **arg, *com = NULL;
 
 	if (_strcmp(command, "\n") == 0)
 		return;
 
 	arg = arguments(command);
-	com = commandFonder(arg[0], list_head);
-	if (com != NULL)
+	if (arg != NULL)
 	{
-		forkk(com, arg);
-	}
-	else if (arg[0] == NULL)
-	{
-		ffree(arg);
-		return;
-	}
-	else
-	{
-		ffree(arg);
-		perror(ag);
+		com = commandFonder(arg[0], list_head);
+		if (com != NULL)
+		{
+			forkk(com, arg);
+		}
+		else
+		{
+			ffree(arg);
+			perror(ag);
+		}
 	}
 }

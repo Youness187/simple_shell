@@ -10,12 +10,21 @@ char **arguments(char *buffer)
 	char **arg;
 	char *token;
 	char *buffer_copy;
-	int len_buffer, i, len = lenstr(buffer);
+	int len_buffer = 0, i;
+	unsigned long int len = lenstr(buffer);
 
 	buffer_copy = malloc(sizeof(char) * len);
+	if (buffer_copy == NULL)
+	{
+		return (NULL);
+	}
 	_strcpy(buffer_copy, buffer);
-
 	token = strtok(buffer_copy, " \n\t\r\a\v");
+	if (token == NULL)
+	{
+		free(buffer_copy);
+		return (NULL);
+	}
 	for (len_buffer = 0; token; len_buffer++)
 	{
 		token = strtok(NULL, " \n\t\r\a\v");
