@@ -1,60 +1,91 @@
 #include "main.h"
 
 /**
- * add_node_end - adding nodes to the end of linked list
- * @head: the head of the linked list
- * @n: path
+ * _realloc - reallocates memory block
+ * @ptr: pointer to the previous memory
+ * @old_size: the old size
+ * @new_size: the new size
  *
- * Return: the NEW Node
+ * Return: a pointer to the newly allocated memory
  */
-
-list_path *add_node_end(list_path **head, char *n)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	list_path *new;
-	list_path *old = *head;
+	void *result;
 
-	while (old != NULL && old->next != NULL)
-		old = old->next;
-
-	new = malloc(sizeof(list_path));
-	if (new == NULL)
-		return (NULL);
-
-	new->dir = n;
-	new->next = NULL;
-
-	if (old == NULL)
+	if (new_size == old_size)
+		return (ptr);
+	if (new_size == 0 && ptr)
 	{
-		*head = new;
-		return (new);
+		free(ptr);
+		return (NULL);
+	}
+	result = malloc(new_size);
+	if (result == NULL)
+		return (NULL);
+	if (ptr == NULL)
+	{
+		fill_an_array(result, '\0', new_size);
+		free(ptr);
 	}
 	else
-		old->next = new;
-
-	return (new);
+	{
+		_memcpy(result, ptr, old_size);
+		free(ptr);
+	}
+	return (result);
 }
-
 /**
- * adding_path - adding nodes to the end of linked list
- * @head: the head of the linked list
+ * _memset - fills a memory with constant byte
+ * @s: pointer to memory area
+ * @n: first n bytes
+ * @byt: constant byte
  *
- * Return: length of linked list
+ * Return: A pointer to a character
  */
-
-int adding_path(list_path **head)
+char *_memset(char *s, char byt, unsigned int n)
 {
-	char *key = NULL, *path = _getpath("PATH");
-	int i = 0;
+	unsigned int i;
 
-	if (path != NULL)
+	for (i = 0; i < n; i++)
 	{
-		key = strtok(path, ":");
+		s[i] = byt;
 	}
-	while (key)
+	return (s);
+}
+/**
+ * free_data - frees data
+ * @data: the data structure
+ *
+ * Return: (Success) positive number
+ * ------- (Fail) negative number
+ */
+int free_data(sh_t *data)
+{
+	free(data->line);
+	data->line = NULL;
+	free(data->args);
+	data->args = NULL;
+	free(data->cmd);
+	data->cmd = NULL;
+	free(data->error_msg);
+	data->error_msg = NULL;
+	return (0);
+}
+/**
+ * _memcpy - cpies memory area
+ * @dest: Destination memory area
+ * @src: Source memory area
+ * @n: Amount of memory byte
+ *
+ * Return: A pointer to dest
+ */
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
 	{
-		add_node_end(head, key);
-		i++;
-		key = strtok(NULL, ":");
+		dest[i] = src[i];
 	}
-	return (i);
+	return (dest);
 }
