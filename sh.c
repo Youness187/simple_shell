@@ -17,6 +17,8 @@ void sh(list_path *list_head, char *a)
 		pid = getline(&buffer, &n, stdin);
 		if (pid == -1)
 		{
+			if (isatty(STDIN_FILENO))
+				print("\n");
 			exit(0);
 		}
 		execute(buffer, list_head, a);
