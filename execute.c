@@ -29,7 +29,7 @@ void execute(char *command, list_path *list_head, char *ag)
 		return;
 
 	arg = arguments(command);
-	com = commandFonder(command, list_head);
+	com = commandFonder(arg[0], list_head);
 	if (com != NULL)
 	{
 		pid_t pid;
