@@ -34,7 +34,7 @@ void execute(char *command, list_path *list_head, char *ag)
 		pid_t pid;
 
 		if (_strcmp(com, "exit") == 0)
-			exit(arg[1] != NULL ? atoi(arg[1]) : 0);
+			exit(0);
 
 		pid = fork();
 		if (pid == 0)
