@@ -23,8 +23,9 @@ void ffree(char **pp)
 void execute(char *command, list_path *list_head, char *ag)
 {
 	char **arg, *com;
+	int status;
 
-	if (_strcmp(command, "\n") == 0)
+	if (_strcmp(command, "\n") == 0 || _strcmp(command, " \n") == 0)
 		return;
 
 	arg = arguments(command);
@@ -39,7 +40,8 @@ void execute(char *command, list_path *list_head, char *ag)
 		pid = fork();
 		if (pid == 0)
 		{
-			if (execve(com, arg, environ) == -1)
+			signal(SIGINT, SIG_DFL);
+			if (execve(com, arg, environ) < 0)
 			{
 				perror(command);
 				return;
@@ -47,7 +49,7 @@ void execute(char *command, list_path *list_head, char *ag)
 		}
 		else
 		{
-			wait(NULL);
+			waitpid(pid, &status, WUNTRACED);
 			free(com);
 			ffree(arg);
 		}

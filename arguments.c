@@ -15,10 +15,10 @@ char **arguments(char *buffer)
 	buffer_copy = malloc(sizeof(char) * len);
 	_strcpy(buffer_copy, buffer);
 
-	token = strtok(buffer_copy, " \t\n");
+	token = strtok(buffer_copy, " \n\t\r\a\v");
 	for (len_buffer = 0; token; len_buffer++)
 	{
-		token = strtok(NULL, " \t\n");
+		token = strtok(NULL, " \n\t\r\a\v");
 	}
 	free(buffer_copy);
 	arg = malloc(sizeof(char *) * len_buffer + 1);
@@ -27,13 +27,13 @@ char **arguments(char *buffer)
 	{
 		return (NULL);
 	}
-	token = strtok(buffer, " \t\n");
+	token = strtok(buffer, " \n\t\r\a\v");
 	for (i = 0; token; i++)
 	{
 		arg[i] = malloc(sizeof(char) * lenstr(token) + 1);
 		_strcpy(arg[i], token);
 		_strcat(arg[i], "\0");
-		token = strtok(NULL, " \t\n");
+		token = strtok(NULL, " \n\t\r\a\v");
 	}
 	arg[i] = NULL;
 	free(token);

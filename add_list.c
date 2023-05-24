@@ -43,7 +43,7 @@ list_path *add_node_end(list_path **head, char *n)
 
 int adding_path(list_path **head)
 {
-	char *key = NULL, *path = _getpath();
+	char *key = NULL, *path = _getpath("PATH");
 	int i = 0;
 
 	if (path != NULL)

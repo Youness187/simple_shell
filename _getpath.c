@@ -2,18 +2,28 @@
 
 /**
  * _getpath - Looking for the paths.
+ * @path_name: key
  * Return: the Full PATH From environ
  */
-char *_getpath()
+char *_getpath(char *path_name)
 {
-	char *key;
-	int i;
+	char **environ_cursor, *env_ptr, *name_ptr;
 
-	for (i = 0; environ[i] != NULL; i++)
+	environ_cursor = environ;
+	while (*environ_cursor)
 	{
-		key = strtok(environ[i], "=");
-		if (_strcmp("PATH", key) == 0)
-			return (strtok(NULL, "\n"));
+		env_ptr = *environ_cursor;
+		name_ptr = path_name;
+		while (*env_ptr == *name_ptr)
+		{
+			if (*env_ptr == '=')
+				break;
+			env_ptr++;
+			name_ptr++;
+		}
+		if ((*env_ptr == '=') && (*name_ptr == '\0'))
+			return (env_ptr + 1);
+		environ_cursor++;
 	}
 	return (NULL);
 }

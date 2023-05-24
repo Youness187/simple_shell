@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -11,6 +12,7 @@
 #define GETLINE getline
 #define STRTOK strtok
 
+/* Global variable */
 extern char **environ;
 
 /**
@@ -33,7 +35,7 @@ int lenstr(char *s);
 list_path *add_nodeint_end(list_path **head, const char *n);
 int adding_path(list_path **head);
 size_t print_listint(const list_path *h);
-char *_getpath();
+char *_getpath(char *path_name);
 char *commandFonder(char *command, list_path *path);
 char **arguments(char *buffer);
 void execute(char *command, list_path *list_head, char *ag);
